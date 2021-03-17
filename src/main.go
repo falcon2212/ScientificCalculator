@@ -3,7 +3,10 @@ package main
 import (
 	"fmt"
 	"math"
+	"os"
 	"strconv"
+
+	log "github.com/Sirupsen/logrus"
 )
 
 type Calculator struct {
@@ -35,6 +38,20 @@ func (C Calculator) Power(b float64, exp float64) (result float64) {
 }
 func main() {
 	fmt.Println("Welcome to the Scientific Calculator!")
+	log.SetFormatter(&log.JSONFormatter{
+		FieldMap: log.FieldMap{
+			log.FieldKeyTime: "@timestamp",
+			log.FieldKeyMsg:  "message",
+		},
+	})
+	log.SetLevel(log.TraceLevel)
+
+	file, err := os.OpenFile("../logs/out.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	if err == nil {
+		log.SetOutput(file)
+	}
+	defer file.Close()
+	log.Info("Program has started")
 	var C Calculator
 	for true {
 		fmt.Println("Select the operation that you would like to perform:")
@@ -48,25 +65,32 @@ func main() {
 		fmt.Scanln(&response)
 		switch response {
 		case "1":
+
 			fmt.Print("Enter the number you want compute sqrt for: ")
 			var strparam string
 			fmt.Scanln(&strparam)
+			log.Info("Calculating square root  of given number:" + strparam)
 			param, _ := strconv.ParseFloat(strparam, 64)
 			var result float64 = C.Sqrt(param)
+			log.Info("Resultant answer of the operations is :" + fmt.Sprintf("%f", result))
 			fmt.Println("Result:", result)
 		case "2":
 			fmt.Print("Enter the number you want compute factorial for: ")
 			var strparam string
 			fmt.Scanln(&strparam)
+			log.Info("Calculating factorial  of given number:" + strparam)
 			param, _ := strconv.ParseInt(strparam, 10, 64)
 			var result int64 = C.Factorial(param)
+			log.Info("Resultant answer of the operations is :" + fmt.Sprintf("%d", result))
 			fmt.Println("Result:", result)
 		case "3":
-			fmt.Print("Enter the number you want compute natural log for: ")
+			fmt.Print("Calculating natural log  of given number: ")
 			var strparam string
 			fmt.Scanln(&strparam)
+			log.Info("Calculating square root  of given number:" + strparam)
 			param, _ := strconv.ParseFloat(strparam, 64)
 			var result float64 = C.NaturalLog(param)
+			log.Info("Resultant answer of the operations is :" + fmt.Sprintf("%f", result))
 			fmt.Println("Result:", result)
 		case "4":
 			fmt.Print("Enter the base: ")
@@ -76,8 +100,10 @@ func main() {
 			fmt.Print("Enter the exponent: ")
 			var strparam2 string
 			fmt.Scanln(&strparam2)
+			log.Info("Calculating power function of given numbers:" + strparam1 + ", " + strparam2)
 			param2, _ := strconv.ParseFloat(strparam2, 64)
 			var result float64 = C.Power(param1, param2)
+			log.Info("Resultant answer of the operations is :" + fmt.Sprintf("%f", result))
 			fmt.Println("Result:", result)
 		case "5":
 			fmt.Println("Thank you for using this calculator")

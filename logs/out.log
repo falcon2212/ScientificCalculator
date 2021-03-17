@@ -1,0 +1,6 @@
+{"@timestamp":"2021-03-18T01:10:39+05:30","level":"info","message":"Program has started"}
+{"@timestamp":"2021-03-18T01:10:42+05:30","level":"info","message":"Calculating factorial  of given number:10"}
+{"@timestamp":"2021-03-18T01:10:42+05:30","level":"info","message":"Resultant answer of the operations is :3628800"}
+{"@timestamp":"2021-03-18T01:25:05+05:30","level":"info","message":"Program has started"}
+{"@timestamp":"2021-03-18T01:25:08+05:30","level":"info","message":"Calculating square root  of given number:9"}
+{"@timestamp":"2021-03-18T01:25:08+05:30","level":"info","message":"Resultant answer of the operations is :3.000000"}
