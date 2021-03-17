@@ -1,0 +1,14 @@
+---
+- name: Deployment Playbook
+  hosts: ansible_client
+  remote_user: root
+  become: true
+  tasks:
+    - name: pull-docker image
+      command:
+        cmd: docker pull khalid2212/mini_project:latest
+    - name: Start the application
+      command:
+        cmd: docker run -i -d khalid2212/mini_project:latest
+
+...
