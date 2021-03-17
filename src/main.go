@@ -1,12 +1,9 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"math"
-	"os"
 	"strconv"
-	"strings"
 )
 
 type Calculator struct {
@@ -38,7 +35,6 @@ func (C Calculator) Power(b float64, exp float64) (result float64) {
 }
 func main() {
 	fmt.Println("Welcome to the Scientific calculator!")
-	reader := bufio.NewReader(os.Stdin)
 	var C Calculator
 	for true {
 		fmt.Println("Select the operation that you would like to perform:")
@@ -48,41 +44,42 @@ func main() {
 		fmt.Println("4. Power")
 		fmt.Println("5. Exit")
 		var quit bool = false
-		response, _ := reader.ReadString('\n')
+		var response string
+		fmt.Scanln(&response)
 		switch response {
-		case "1\n":
+		case "1":
 			fmt.Print("Enter the number you want compute sqrt for: ")
-			strparam, _ := reader.ReadString('\n')
-			strparam = strings.TrimSuffix(strparam, "\n")
+			var strparam string
+			fmt.Scanln(&strparam)
 			param, _ := strconv.ParseFloat(strparam, 64)
 			var result float64 = C.Sqrt(param)
 			fmt.Println("Result:", result)
-		case "2\n":
+		case "2":
 			fmt.Print("Enter the number you want compute factorial for: ")
-			strparam, _ := reader.ReadString('\n')
-			strparam = strings.TrimSuffix(strparam, "\n")
+			var strparam string
+			fmt.Scanln(&strparam)
 			param, _ := strconv.ParseInt(strparam, 10, 64)
 			var result int64 = C.Factorial(param)
 			fmt.Println("Result:", result)
-		case "3\n":
+		case "3":
 			fmt.Print("Enter the number you want compute natural log for: ")
-			strparam, _ := reader.ReadString('\n')
-			strparam = strings.TrimSuffix(strparam, "\n")
+			var strparam string
+			fmt.Scanln(&strparam)
 			param, _ := strconv.ParseFloat(strparam, 64)
 			var result float64 = C.NaturalLog(param)
 			fmt.Println("Result:", result)
-		case "4\n":
+		case "4":
 			fmt.Print("Enter the base: ")
-			strparam1, _ := reader.ReadString('\n')
-			strparam1 = strings.TrimSuffix(strparam1, "\n")
+			var strparam1 string
+			fmt.Scanln(&strparam1)
 			param1, _ := strconv.ParseFloat(strparam1, 64)
 			fmt.Print("Enter the exponent: ")
-			strparam2, _ := reader.ReadString('\n')
-			strparam2 = strings.TrimSuffix(strparam2, "\n")
+			var strparam2 string
+			fmt.Scanln(&strparam2)
 			param2, _ := strconv.ParseFloat(strparam2, 64)
 			var result float64 = C.Power(param1, param2)
 			fmt.Println("Result:", result)
-		case "5\n":
+		case "5":
 			fmt.Println("Thank you for using this calculator")
 			quit = true
 			break
