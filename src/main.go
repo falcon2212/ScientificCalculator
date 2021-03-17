@@ -34,7 +34,7 @@ func (C Calculator) Power(b float64, exp float64) (result float64) {
 	return result
 }
 func main() {
-	fmt.Println("Welcome to the Scientific calculator!")
+	fmt.Println("Welcome to the Scientific Calculator!")
 	var C Calculator
 	for true {
 		fmt.Println("Select the operation that you would like to perform:")
